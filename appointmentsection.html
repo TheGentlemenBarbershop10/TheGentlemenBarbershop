@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/png" href="logo.png"/>
+  <title>The Gentlemen Barbershop</title>
+
+  <style>
+    body {
+      transition: opacity 0.5s ease-in-out;
+      background-image: url('bg.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-family: Franchise;
+      font-size: 50px;
+      text-align: center
+    }
+
+    h2 {
+      font-family: Bebas Neue;
+      font-size: 25px;
+      margin: 0 auto;
+      width: 50%;
+      text-align: justify;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-family: Helvetica;
+      font-size: 14px;
+      text-align: justify;
+    }
+
+    form {
+      margin: 0 auto;
+      width: 50%;
+    }
+
+    input {
+      width: 96%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .custom-button {
+      background-color: #82BADD;
+      color: #000;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .custom-button:hover {
+      background-color: #64ADDB;
+    }
+
+    #error-message {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <center><h1>The Gentlemen Barbershop</h1></center>
+  <h2>Book an Appointment</h2>
+  
+  <form action="https://formsubmit.co/thegentlemenb@gmail.com" method="post" id="appointmentForm">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <select name="service" required>
+      <option value="">Select a service</option>
+      <option value="Haircut">Haircut</option>
+      <option value="Face Shave">Face Shave</option>
+      <option value="Threading">Threading</option>
+    </select>
+    <input type="date" name="date" placeholder="Date" required>
+    <input type="time" name="time" placeholder="Time" required>
+	<p>Please wait for the barber's email confirmation before your booking is finalized. They will respond to the email address you provided in the fill-out page.</p>
+	<p>To ensure your appointment availability, <b>please book at least 1 week to 2 days in advance.</b></p>
+	<p>To schedule another appointment, please navigate back two pages using your browser's back button.</p>
+    	<p>Barber available between 12:00 PM and 4:00 PM only. </p>
+	
+    <center><button class="custom-button">Book an Appointment</button></center>
+    <div id="error-message"></div>
+  </form>
+
+  <script>
+    const appointmentForm = document.getElementById('appointmentForm');
+    appointmentForm.addEventListener('submit', (event) => {
+      if (!isFormComplete()) {
+        event.preventDefault();
+        displayErrorMessage('Please fill out all required fields.');
+      }
+    });
+
+    function isFormComplete() {
+      const nameInput = document.querySelector('input[name="name"]');
+      const emailInput = document.querySelector('input[name="email"]');
+      const serviceSelect = document.querySelector('select[name="service"]');
+      const dateInput = document.querySelector('input[name="date"]');
+      const timeInput = document.querySelector('input[name="time"]');
+
+      return nameInput.value && emailInput.value && serviceSelect.value && dateInput.value && timeInput.value;
+    }
+
+    function displayErrorMessage(message) {
+      const errorMessageElement = document.getElementById('error-message');
+      errorMessageElement.textContent = message;
+    }
+  </script>
+
+</body>
+</html>
